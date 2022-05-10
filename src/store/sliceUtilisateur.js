@@ -3,12 +3,12 @@ import { createSlice  } from '@reduxjs/toolkit'
 const sliceUtilisateur = createSlice({
     name: 'user',
     initialState:
-        JSON.parse(sessionStorage.getItem('employes')) !== null
-        ? [...JSON.parse(sessionStorage.getItem('employes'))] : [],
+        JSON.parse(localStorage.getItem('employes')) !== null
+        ? [...JSON.parse(localStorage.getItem('employes'))] : [],
     reducers: {
         ajouteEmploye : (state, action) => {
             state.push(action.payload)
-            sessionStorage.setItem('employes', JSON.stringify(state))
+            localStorage.setItem('employes', JSON.stringify(state))
         }
     }
 })
