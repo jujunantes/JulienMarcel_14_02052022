@@ -21,3 +21,47 @@ label {
 .address {
     margin-top: 10px;
 }
+
+.modale {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 10;
+}
+
+.fenetreModale {
+    background-color: #dddddd;
+    position: relative;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    top: 40%;
+    padding: 1rem;
+    border-radius: 15px;
+    box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.5);
+    z-index: 15;
+}
+
+.fermetureModale {
+    background-color: #000000;
+    color: #ffffff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    position: absolute;
+    top: -2rem;
+    right: -.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    border-radius: 50%;
+    text-align: center;
+    box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.5);
+}
+
+.fermetureModale:hover {
+    background-color: #ffffff;
+    color: #000000;
+}

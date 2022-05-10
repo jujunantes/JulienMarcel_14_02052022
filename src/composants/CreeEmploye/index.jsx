@@ -3,8 +3,13 @@ import React, { useState } from "react"
 import { useDispatch } from "react-redux"
 import { ajouteEmploye } from "../../store/sliceUtilisateur"
 import Select from 'react-select'
+import Modale from "../Modale"
 
 function CreeEmploye() {
+
+    const [etatModale, setModale] = useState(false)
+    const ouvertureModale = () => setModale(true)
+    const fermetureModale = () => setModale(false)
 
     const [prenom, setPrenom] = useState()
     const [nom, setNom] = useState()
@@ -75,6 +80,7 @@ function CreeEmploye() {
     const nouvelEmploye = (e) => {
         e.preventDefault()
         dispatch(ajouteEmploye(champsEmploye))
+        ouvertureModale()
       }
 
     return (
@@ -127,6 +133,7 @@ function CreeEmploye() {
                     defaultValue={services[1]}
                 />
                 <button>Save</button>
+                {etatModale && (<Modale texte={'Employee Created!'} fermetureModale={fermetureModale} />)}
             </form>
         
     </div>

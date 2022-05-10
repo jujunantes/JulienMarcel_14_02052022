@@ -1,7 +1,8 @@
+import CreeEmploye from "../../composants/CreeEmploye"
 function AjouteEmploye() {
     return (
       <div>
-        <h1>HRnet - AjouteEmploye</h1>
+        <CreeEmploye />
       </div>
     )
   }
