@@ -1,10 +1,8 @@
-import EnTete from "../../composants/EnTete"
 import CreeEmploye from "../../composants/CreeEmploye"
 
 function Accueil() {
     return (
-      <div className="App container">
-        <EnTete />
+      <div>
         <CreeEmploye />
       </div>
     )
