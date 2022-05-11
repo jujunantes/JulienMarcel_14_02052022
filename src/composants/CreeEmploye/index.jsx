@@ -12,14 +12,20 @@ function CreeEmploye() {
         return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
     }
 
+    function formateDate(date) {
+
+    }
+
     const [etatModale, setModale] = useState(false)
     const ouvertureModale = () => setModale(true)
     const fermetureModale = () => setModale(false)
 
+    // Filling placeholder random data
+    const [id, setId] = useState(Date.now())
     const [prenom, setPrenom] = useState(prenoms[Math.floor(Math.random() * prenoms.length)])
     const [nom, setNom] = useState(noms[Math.floor(Math.random() * noms.length)])
-    const [naissance, setNaissance] = useState(randomDate(new Date(1950,0 ,1), new Date(2004,0,1)).toLocaleDateString())
-    const [debut, setDebut] = useState(randomDate(new Date(2010,0 ,1), new Date()).toLocaleDateString())
+    const [naissance, setNaissance] = useState(randomDate(new Date(1950,0 ,1), new Date(2004,0,1)).toISOString().split('T')[0])
+    const [debut, setDebut] = useState(randomDate(new Date(2010,0 ,1), new Date()).toISOString().split('T')[0])
     const [rue, setRue] = useState(Math.round(Math.random() * 100 + 1) + ' ' + rues[Math.floor(Math.random() * rues.length)])
     const [ville, setVille] = useState(villes[Math.floor(Math.random() * villes.length)])
     const [etat, setEtat] = useState(states[Math.floor(Math.random() * states.length)].value)
@@ -29,7 +35,7 @@ function CreeEmploye() {
     const dispatch = useDispatch()
 
     const champsEmploye = {
-        id: Date.now(),
+        id,
         prenom,
         nom,
         naissance,
@@ -43,9 +49,29 @@ function CreeEmploye() {
 
     const nouvelEmploye = (e) => {
         e.preventDefault()
+        setId(Date.now())
         dispatch(ajouteEmploye(champsEmploye))
         ouvertureModale()
       }
+
+    const ajoute100Employes = (e) => {
+        e.preventDefault()
+        for (let employe = 0; employe < 100; employe++) {
+            const id = Date.now() + Math.round(Math.random() * 100000)
+            const prenom = prenoms[Math.floor(Math.random() * prenoms.length)]
+            const nom = noms[Math.floor(Math.random() * noms.length)]
+            const naissance = randomDate(new Date(1950,0 ,1), new Date(2004,0,1)).toISOString().split('T')[0]
+            const debut = randomDate(new Date(2010,0 ,1), new Date()).toISOString().split('T')[0]
+            const rue = Math.round(Math.random() * 100 + 1) + ' ' + rues[Math.floor(Math.random() * rues.length)]
+            const ville = villes[Math.floor(Math.random() * villes.length)]
+            const etat = states[Math.floor(Math.random() * states.length)].value
+            const codePostal = Math.round(Math.random() * 90000) + 100
+            const service = services[Math.floor(Math.random() * services.length)].label
+            dispatch(ajouteEmploye({'id':id, "prenom":prenom, "nom":nom, "naissance":naissance,
+                "debut":debut, "rue":rue, "ville":ville, "etat":etat, "codePostal":codePostal, "service":service}))
+        }
+        console.log('100 employés ajoutés !')
+    }
 
     return (
         <div className="container">
@@ -98,10 +124,13 @@ function CreeEmploye() {
                     options={services}
                     defaultValue={services[1]}
                 />
-                <button>Save</button>
+                <br /><button>Save</button>
                 {etatModale && (<Modale texte={'Employee Created!'} fermetureModale={fermetureModale} />)}
             </form>
-        
+            <form onSubmit={(e) => ajoute100Employes(e)}>
+                <br />
+                <button>Add 100 random employees</button>
+            </form>
     </div>
     )
 }
