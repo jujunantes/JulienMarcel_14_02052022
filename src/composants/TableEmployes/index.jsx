@@ -1,4 +1,5 @@
-import DataTable from 'react-data-table-component';
+import DataTable from 'react-data-table-component'
+import { useSelector } from "react-redux"
 
 const columns = [
     {
@@ -15,7 +16,7 @@ const columns = [
     },
     {
         name: 'Department',
-        selector: row => row.service['value'],
+        selector: row => row.service,
     },
     {
         name: 'Date of Birth',
@@ -31,7 +32,7 @@ const columns = [
     },
     {
         name: 'State',
-        selector: row => row.etat['value'],
+        selector: row => row.etat,
     },
     {
         name: 'Zip Code',
@@ -39,33 +40,8 @@ const columns = [
     },
 ]
 
+/*
 const data = [
-    /*
-    {
-        id: 1652193284089,
-        prenom: 'Julien',
-        nom: 'Marcel',
-        rue: '25 rue Malleret',
-        ville: 'Bordeaux',
-        codePostal: '33000',
-        service: {
-          value: 'Engineering',
-          label: 'Engineering'
-        }
-      },
-    {
-        id: 1652198389801,
-        prenom: 'Bob',
-        nom: 'Morane',
-        rue: 'quai Voltaire',
-        ville: 'Paris',
-        codePostal: '75001',
-        service: {
-          value: 'Engineering',
-          label: 'Engineering'
-        }
-      },
-      */
     {
         id: 1652201809579,
         prenom: 'Maylis',
@@ -104,8 +80,13 @@ const data = [
         }
       }
 ]
+*/
+
+//const data = JSON.parse(window.localStorage.getItem('user')[0])
+
 
 function TableEmployes() {
+    const data = useSelector((state) => state.user)
     return (
         <DataTable
             columns={columns}
