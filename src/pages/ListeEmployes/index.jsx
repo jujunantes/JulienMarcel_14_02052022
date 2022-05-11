@@ -1,7 +1,10 @@
+import TableEmployes from '../../composants/TableEmployes'
+
 function ListeEmployes() {
     return (
       <div>
-        <h1>HRnet - ListeEmployes</h1>
+        <h1>Current Employees</h1>
+        <TableEmployes />
       </div>
     )
   }
