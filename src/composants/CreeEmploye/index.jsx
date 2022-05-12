@@ -5,15 +5,12 @@ import { ajouteEmploye } from "../../store/sliceUtilisateur"
 import Select from 'react-select'
 import Modale from "../Modale"
 import {states, services, prenoms, noms, rues, villes } from '../../utils/Datas'
+import EnTete from "../../composants/EnTete"
 
 function CreeEmploye() {
 
     function randomDate(start, end) {
         return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
-    }
-
-    function formateDate(date) {
-
     }
 
     const [etatModale, setModale] = useState(false)
@@ -73,64 +70,122 @@ function CreeEmploye() {
         console.log('100 employés ajoutés !')
     }
 
+    const monSelect = {
+        control: styles => ({...styles, paddingTop: '9px', paddingBottom: '9px', border: 'none',
+            boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.1)', borderRadius:'4px'})
+    }
+
     return (
         <div className="container">
-            <Link to="/liste-employes">View Current Employees</Link>
-            <h2>Create Employee</h2>
+            <div className="row align-items-center justify-content-center">
+                <div className="col-md-7 py-5">
+                    <EnTete />
+                    <div className="row text-center">
+                        <Link to="/liste-employes" className="mb-4">View Current Employees</Link>
+                    </div>
+                    <div className="row text-center marge-titre">
+                        <h3>Create Employee</h3>
+                    </div>                    
+                    <form action="#" id="create-employee" onSubmit={(e) => nouvelEmploye(e)}>
+                        <div className="row">
+                            <div className="col-md-6">
+                                <div className="form-group first">
+                                    <label htmlFor="first-name">First Name</label>
+                                    <input type="text" className="form-control" id="first-name" placeholder={prenom} onChange={(e) => setPrenom(e.target.value)} />
+                                </div>    
+                            </div>
+                            <div className="col-md-6">
+                                <div className="form-group first">
+                                    <label htmlFor="last-name">Last Name</label>
+                                    <input type="text" className="form-control" id="last-name" placeholder={nom} onChange={(e) => setNom(e.target.value)} />
+                                </div>    
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-md-6">
+                                <div className="form-group first">
+                                    <label htmlFor="date-of-birth">Date of Birth</label>
+                                    <input id="date-of-birth" type="text" className="form-control" placeholder={naissance}
+                                        onFocus={(e) => (e.target.type = "date")} onMouseEnter={(e) => (e.target.type = "date")}
+                                        onBlur={(e) => (e.target.type = "text")} onMouseLeave={(e) => (e.target.type = "text")}
+                                        onChange={(e) => setNaissance(e.target.value)} />
+                                </div>    
+                            </div>
+                            <div className="col-md-6">
+                                <div className="form-group first">
+                                    <label htmlFor="start-date">Start Date</label>
+                                    <input id="start-date" type="text" className="form-control" placeholder={debut}
+                                        onFocus={(e) => (e.target.type = "date")} onMouseEnter={(e) => (e.target.type = "date")}
+                                        onBlur={(e) => (e.target.type = "text")} onMouseLeave={(e) => (e.target.type = "text")}
+                                        onChange={(e) => setDebut(e.target.value)} />
+                                </div>    
+                            </div>
+                        </div>
 
-            <form action="#" id="create-employee" onSubmit={(e) => nouvelEmploye(e)}>
-                <label htmlFor="first-name">First Name</label>
-                <input type="text" id="first-name" placeholder={prenom} onChange={(e) => setPrenom(e.target.value)} />
-
-                <label htmlFor="last-name">Last Name</label>
-                <input type="text" id="last-name" placeholder={nom} onChange={(e) => setNom(e.target.value)} />
-
-                <label htmlFor="date-of-birth">Date of Birth</label>
-                <input id="date-of-birth" type="text" placeholder={naissance} onFocus={(e) => (e.target.type = "date")}
-                    onBlur={(e) => (e.target.type = "text")} onChange={(e) => setNaissance(e.target.value)} />
-
-                <label htmlFor="start-date">Start Date</label>
-                <input id="start-date" type="text" placeholder={debut} onFocus={(e) => (e.target.type = "date")}
-                    onBlur={(e) => (e.target.type = "text")} onChange={(e) => setDebut(e.target.value)} />
-
-                <fieldset className="address">
-                    <legend>Address</legend>
-
-                    <label htmlFor="street">Street</label>
-                    <input id="street" type="text" placeholder={rue} onChange={(e) => setRue(e.target.value)}  />
-
-                    <label htmlFor="city">City</label>
-                    <input id="city" type="text" placeholder={ville} onChange={(e) => setVille(e.target.value)}  />
-
-                    <label htmlFor="state">State</label>
-                    <Select
-                        name="state"
-                        id="state"
-                        onChange={(e) => setEtat(e.value)}
-                        value={states.value}
-                        options={states}
-                        defaultValue={states[1]}
-                    />
-
-                    <label htmlFor="zip-code">Zip Code</label>
-                    <input id="zip-code" type="number" placeholder={codePostal} onChange={(e) => setCodePostal(e.target.value)} />
-                </fieldset>
-                <label htmlFor="department">Department</label>
-                <Select
-                    name="department"
-                    id="department"
-                    onChange={(e) => setService(e.label)}
-                    value={services.value}
-                    options={services}
-                    defaultValue={services[1]}
-                />
-                <br /><button>Save</button>
-                {etatModale && (<Modale texte={'Employee Created!'} fermetureModale={fermetureModale} />)}
-            </form>
-            <form onSubmit={(e) => ajoute100Employes(e)}>
-                <br />
-                <button>Add 100 random employees</button>
-            </form>
+                        <fieldset className="address form-group border p-3">
+                            <legend className="w-auto px-2">Address</legend>
+                            <div className="row">
+                                <div className="col-md-6">
+                                    <div className="form-group first">
+                                        <label htmlFor="street">Street</label>
+                                        <input id="street" type="text" className="form-control" placeholder={rue} onChange={(e) => setRue(e.target.value)}  />
+                                    </div>    
+                                </div>
+                                <div className="col-md-6">
+                                    <div className="form-group first">
+                                        <label htmlFor="city">City</label>
+                                        <input id="city" type="text" className="form-control" placeholder={ville} onChange={(e) => setVille(e.target.value)}  />
+                                    </div>    
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-md-6">
+                                    <div className="form-group first">
+                                        <label htmlFor="state">State</label>
+                                        <Select
+                                            name="state"
+                                            id="state"
+                                            onChange={(e) => setEtat(e.value)}
+                                            value={states.value}
+                                            options={states}
+                                            defaultValue={states[1]}
+                                            styles={monSelect}
+                                        />
+                                    </div>    
+                                </div>
+                                <div className="col-md-6">
+                                    <div className="form-group first">
+                                        <label htmlFor="zip-code">Zip Code</label>
+                                        <input id="zip-code" type="number" className="form-control" placeholder={codePostal} onChange={(e) => setCodePostal(e.target.value)} />
+                                    </div>    
+                                </div>
+                            </div>
+                        </fieldset>
+                        <label htmlFor="department">Department</label>
+                        <Select
+                            name="department"
+                            id="department"
+                            onChange={(e) => setService(e.label)}
+                            value={services.value}
+                            options={services}
+                            defaultValue={services[1]}
+                            styles={monSelect}
+                        />
+                        <div className="row marge-boutons">
+                            <div className="col-md-6">
+                                <input type ='submit' value='Save' className="btn px-5 btn-primary" />   
+                            </div>
+                            <div className="col-md-6">
+                                <input type ='submit' value='Add 100 random employees' className="btn px-5 btn-primary"
+                                onClick={(e) => ajoute100Employes(e)} />  
+                            </div>
+                        </div>
+                        {etatModale && (<Modale texte={'Employee Created!'} fermetureModale={fermetureModale} />)}
+                    </form>
+                </div>
+                
+            </div>
+            
     </div>
     )
 }
