@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { useDispatch } from "react-redux"
 import { ajouteEmploye } from "../../store/sliceUtilisateur"
 import Select from 'react-select'
@@ -18,6 +18,8 @@ function CreeEmploye() {
     const fermetureModale = () => setModale(false)
 
     // Filling placeholder random data
+    const randomService = Math.floor(Math.random() * services.length) // re-used to set the select's random value on first render
+    const randomState = Math.floor(Math.random() * states.length) // re-used to set the select's random value on first render
     const [id, setId] = useState(Date.now())
     const [prenom, setPrenom] = useState(prenoms[Math.floor(Math.random() * prenoms.length)])
     const [nom, setNom] = useState(noms[Math.floor(Math.random() * noms.length)])
@@ -25,9 +27,9 @@ function CreeEmploye() {
     const [debut, setDebut] = useState(randomDate(new Date(2010,0 ,1), new Date()).toISOString().split('T')[0])
     const [rue, setRue] = useState(Math.round(Math.random() * 100 + 1) + ' ' + rues[Math.floor(Math.random() * rues.length)])
     const [ville, setVille] = useState(villes[Math.floor(Math.random() * villes.length)])
-    const [etat, setEtat] = useState(states[Math.floor(Math.random() * states.length)].value)
+    const [etat, setEtat] = useState(states[randomState].value)
     const [codePostal, setCodePostal] = useState(Math.round(Math.random() * 90000) + 1000)
-    const [service, setService] = useState(services[Math.floor(Math.random() * services.length)].label)
+    const [service, setService] = useState(services[randomService].label)
 
     const dispatch = useDispatch()
 
@@ -80,9 +82,12 @@ function CreeEmploye() {
             <div className="row align-items-center justify-content-center">
                 <div className="col-md-7 py-5">
                     <EnTete />
-                    <div className="row text-center">
-                        <Link to="/liste-employes" className="mb-4">View Current Employees</Link>
-                    </div>
+                    {/*<div className="row text-center">*/}
+                        <Link to="/liste-employes" className="sticky-link">
+                            <div className="sticky-tab">
+                                View Current Employees
+                            </div>
+                        </Link>
                     <div className="row text-center marge-titre">
                         <h3>Create Employee</h3>
                     </div>                    
@@ -148,7 +153,7 @@ function CreeEmploye() {
                                             onChange={(e) => setEtat(e.value)}
                                             value={states.value}
                                             options={states}
-                                            defaultValue={states[1]}
+                                            defaultValue={states[randomState]}
                                             styles={monSelect}
                                         />
                                     </div>    
@@ -168,17 +173,13 @@ function CreeEmploye() {
                             onChange={(e) => setService(e.label)}
                             value={services.value}
                             options={services}
-                            defaultValue={services[1]}
+                            defaultValue={services[randomService]}
                             styles={monSelect}
                         />
-                        <div className="row marge-boutons">
-                            <div className="col-md-6">
-                                <input type ='submit' value='Save' className="btn px-5 btn-primary" />   
-                            </div>
-                            <div className="col-md-6">
-                                <input type ='submit' value='Add 100 random employees' className="btn px-5 btn-primary"
-                                onClick={(e) => ajoute100Employes(e)} />  
-                            </div>
+                        <div className="row">
+                            <div className="col-md-6 col-12 text-md-left text-center marge-boutons"><input type ='submit' value='Save' className="btn btn-primary full-width float-md-start" /></div>
+                            <div className="col-md-6 col-12 text-md-right text-center marge-boutons"><input type ='submit' value='Add 100 random employees' className="btn btn-primary float-md-end full-width"
+                                onClick={(e) => ajoute100Employes(e)} /></div>
                         </div>
                         {etatModale && (<Modale texte={'Employee Created!'} fermetureModale={fermetureModale} />)}
                     </form>

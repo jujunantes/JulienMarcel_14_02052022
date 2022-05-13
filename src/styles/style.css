@@ -154,30 +154,12 @@ body {
     background-color: #7e0cf5;
     opacity: .2; }
 
-/* Début CSS Open Classrooms */
+/* Mon CSS */
 .title {
     display: flex;
     align-items: center;
     justify-content: center;
 }
-/*
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-label {
-    display: block;
-    margin-top: 1rem;
-    margin-bottom: 10px;
-}
-
-.address {
-    margin-top: 10px;
-}
-*/
 
 .form-group {
     margin-bottom: 1rem;
@@ -304,3 +286,59 @@ table {
     background-color: #283c34;
     text-align: center;
    }
+
+   /*
+    Sticky Tab
+    Inspired from : https://www.aritsltd.com/blog/frontend-development/sticky-side-tab/
+    */
+
+.sticky-tab {
+    box-sizing: border-box;
+    background-color: #aaa;
+    border-radius:  0 15px 15px 0;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    color: white;
+    position: fixed;
+    width: 60px;
+    height: 250px;
+    padding: 20px;
+    text-align: center;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all 200ms linear;
+    writing-mode: vertical-rl;
+    text-orientation: none;
+  }
+   
+.sticky-tab:hover {
+    background-color: #bbb;
+  }
+
+  @media (max-width: 1100px) {
+      .title {
+          font-size: 3rem;
+      }
+      .logo {
+          width: 6rem;
+          height: 6rem;
+          margin-top: -1.5rem;
+      }
+  }
+
+  @media (max-width: 768px) {
+    .sticky-tab {
+        border-radius: 15px;
+        position: relative;
+        top: -10px;
+        writing-mode: horizontal-tb;
+        width:auto;
+        height: auto;
+    }
+    .full-width {
+        width: 100%;  
+    }
+    body {
+        background-color: #f6f7fc;
+    }
+}
