@@ -64,16 +64,27 @@ function filtre(item, searchTerm) {
     else {return false}
 }
 
+
+function monSubHeader() {
+    return (
+        <div>
+            Test subHeader
+        </div>
+    )
+}
+
 function TableEmployes() {
     const [searchTerm, setSearchTerm] = useState("")
     const data = useSelector((state) => state.user)
+    
     return (
     <div>
-        <label>
-          Search:
-          <input type='text' name='recherche' onChange={(e) => setSearchTerm(e.target.value)}></input>
-        </label>
+        
         <DataTable
+            subHeader subHeaderComponent={
+                <input type='text' name='recherche' className='maRecherche' placeholder='Search...'
+                    onChange={(e) => setSearchTerm(e.target.value)}></input>
+            }
             columns={columns}
             data={data.filter((item) => {
                 if (searchTerm === "") {
@@ -87,7 +98,20 @@ function TableEmployes() {
               pagination
               responsive
               subHeaderAlign="right"
-              subHeaderWrap
+              highlightOnHover
+              striped
+              direction="auto"
+              fixedHeaderScrollHeight="300px"
+              persistTableHead
+              expandableRows expandableRowsComponent={({ data }) =>
+                <div className='myExpandableRow'>
+                  <p>{data.prenom + ' ' + data.nom}</p>
+                  <p>{'Start: ' + data.debut + ' (' + data.service + ')'}</p>
+                  <p>{'Birth date: ' + data.naissance}</p>
+                  <p>{data.rue + ', ' + data.ville}</p>
+                  <p>{data.etat + ' - ' + data.codePostal}</p>
+                </div>}
+            
         />
     </div>
         

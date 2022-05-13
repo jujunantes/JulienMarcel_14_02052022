@@ -13,9 +13,15 @@ function CreeEmploye() {
         return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
     }
 
+    // Modale ajout 1 employé
     const [etatModale, setModale] = useState(false)
     const ouvertureModale = () => setModale(true)
     const fermetureModale = () => setModale(false)
+
+    // Modale ajout 100 employés
+    const [etatModale2, setModale2] = useState(false)
+    const ouvertureModale2 = () => setModale2(true)
+    const fermetureModale2 = () => setModale2(false)
 
     // Filling placeholder random data
     const randomService = Math.floor(Math.random() * services.length) // re-used to set the select's random value on first render
@@ -69,7 +75,7 @@ function CreeEmploye() {
             dispatch(ajouteEmploye({'id':id, "prenom":prenom, "nom":nom, "naissance":naissance,
                 "debut":debut, "rue":rue, "ville":ville, "etat":etat, "codePostal":codePostal, "service":service}))
         }
-        console.log('100 employés ajoutés !')
+        ouvertureModale2()
     }
 
     const monSelect = {
@@ -82,12 +88,11 @@ function CreeEmploye() {
             <div className="row align-items-center justify-content-center">
                 <div className="col-md-7 py-5">
                     <EnTete />
-                    {/*<div className="row text-center">*/}
-                        <Link to="/liste-employes" className="sticky-link">
-                            <div className="sticky-tab">
-                                View Current Employees
-                            </div>
-                        </Link>
+                    <Link to="/liste-employes" className="sticky-link">
+                        <div className="sticky-tab">
+                            View Current Employees
+                        </div>
+                    </Link>
                     <div className="row text-center marge-titre">
                         <h3>Create Employee</h3>
                     </div>                    
@@ -182,6 +187,7 @@ function CreeEmploye() {
                                 onClick={(e) => ajoute100Employes(e)} /></div>
                         </div>
                         {etatModale && (<Modale texte={'Employee Created!'} fermetureModale={fermetureModale} />)}
+                        {etatModale2 && (<Modale texte={'100 Employés Ajoutés !'} fermetureModale={fermetureModale2} />)}
                     </form>
                 </div>
                 

@@ -300,6 +300,33 @@ table {
        border-radius: 15px;
    }
 
+   .maRecherche {
+       margin-left: 1rem;
+       margin-top: 1rem;
+       border: none;
+       box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+       border-radius: 4px;
+       height: 54px;
+       background: #f6f7fc;
+       padding-left: 1rem;
+       padding-right: 1rem;
+   }
+
+   .maRecherche:focus {
+        outline-width: 0;
+        outline: none;
+   }
+
+   .myExpandableRow {
+       padding-top: 1rem;
+       padding-left: 1rem;
+   }
+
+   .myExpandableRow p {
+       margin-bottom: .5rem;
+       color: #555;
+   }
+
    /*
     Sticky Tab
     Inspired from : https://www.aritsltd.com/blog/frontend-development/sticky-side-tab/
