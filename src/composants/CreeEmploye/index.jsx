@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { ajouteEmploye } from "../../store/sliceUtilisateur"
 import Select from 'react-select'
-import Modale from "../Modale"
+import JModale from "../JModale"
 import {states, services, prenoms, noms, rues, villes } from '../../utils/Datas'
 import EnTete from "../../composants/EnTete"
 
@@ -86,7 +86,7 @@ function CreeEmploye() {
     return (
         <div className="container">
             <div className="row align-items-center justify-content-center">
-                <div className="col-md-7 py-5">
+                <div className="col-md-7 py-5 monOverlay">
                     <EnTete />
                     <Link to="/liste-employes" className="sticky-link">
                         <div className="sticky-tab">
@@ -94,7 +94,7 @@ function CreeEmploye() {
                         </div>
                     </Link>
                     <div className="row text-center marge-titre">
-                        <h3>Create Employee</h3>
+                        <h3 onClick={(e) => ouvertureModale()}>Create Employee</h3>
                     </div>                    
                     <form action="#" id="create-employee" onSubmit={(e) => nouvelEmploye(e)}>
                         <div className="row">
@@ -186,8 +186,8 @@ function CreeEmploye() {
                             <div className="col-md-6 col-12 text-md-right text-center marge-boutons"><input type ='submit' value='Add 100 random employees' className="btn btn-primary float-md-end full-width"
                                 onClick={(e) => ajoute100Employes(e)} /></div>
                         </div>
-                        {etatModale && (<Modale texte={'Employee Created!'} fermetureModale={fermetureModale} />)}
-                        {etatModale2 && (<Modale texte={'100 Employés Ajoutés !'} fermetureModale={fermetureModale2} />)}
+                        {etatModale && (<JModale title='Success!' text={'Employee Created!'} closingModale={fermetureModale} />)}
+                        {etatModale2 && (<JModale  title='Success!' text={'100 Employés Ajoutés !'} closingModale={fermetureModale2} />)}
                     </form>
                 </div>
                 
