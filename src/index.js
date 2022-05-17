@@ -1,10 +1,18 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import MyRouter from './utils/Router'
+import './styles/bootstrap.min.css'
 import './styles/style.css'
 import { store } from './store/store'
 import { Provider } from 'react-redux'
-import Background from './medias/hr.png'
+// Background picture infos
+// The .avif format is available on all plateforms but needs to be activated in prefs in some older browsers.
+// Size comparisons :
+//    PNG  : 3.3 MB (Lighthouse doesn't like it !)
+//    WebP : 2.2 MB
+//    Avif :   193 KB
+import Background from './medias/hr.avif' 
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

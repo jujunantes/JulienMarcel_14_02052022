@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom"
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import { useDispatch } from "react-redux"
 import { ajouteEmploye } from "../../store/sliceUtilisateur"
 import Select from 'react-select'
-import JModale from "../JModale"
+import JModal from 'jmodal2'
 import {states, services, prenoms, noms, rues, villes } from '../../utils/Datas'
 import EnTete from "../../composants/EnTete"
 
@@ -94,7 +94,7 @@ function CreeEmploye() {
                         </div>
                     </Link>
                     <div className="row text-center marge-titre">
-                        <h3 onClick={(e) => ouvertureModale()}>Create Employee</h3>
+                        <h2>Create Employee</h2>
                     </div>                    
                     <form action="#" id="create-employee" onSubmit={(e) => nouvelEmploye(e)}>
                         <div className="row">
@@ -151,10 +151,11 @@ function CreeEmploye() {
                             <div className="row">
                                 <div className="col-md-6">
                                     <div className="form-group first">
-                                        <label htmlFor="state">State</label>
+                                        <label htmlFor="state" id="labelState">State</label>
                                         <Select
                                             name="state"
                                             id="state"
+                                            aria-labelledby="labelState"
                                             onChange={(e) => setEtat(e.value)}
                                             value={states.value}
                                             options={states}
@@ -171,10 +172,11 @@ function CreeEmploye() {
                                 </div>
                             </div>
                         </fieldset>
-                        <label htmlFor="department">Department</label>
+                        <label htmlFor="department" id="labelDepartment">Department</label>
                         <Select
                             name="department"
                             id="department"
+                            aria-labelledby="labelDepartment"
                             onChange={(e) => setService(e.label)}
                             value={services.value}
                             options={services}
@@ -186,8 +188,8 @@ function CreeEmploye() {
                             <div className="col-md-6 col-12 text-md-right text-center marge-boutons"><input type ='submit' value='Add 100 random employees' className="btn btn-primary float-md-end full-width"
                                 onClick={(e) => ajoute100Employes(e)} /></div>
                         </div>
-                        {etatModale && (<JModale title='Success!' text={'Employee Created!'} closingModale={fermetureModale} />)}
-                        {etatModale2 && (<JModale  title='Success!' text={'100 Employés Ajoutés !'} closingModale={fermetureModale2} />)}
+                        {etatModale && (<JModal className='dixPC' title='Success!' text={'Employee Created!'} closingModale={fermetureModale} />)}
+                        {etatModale2 && (<JModal  className='dixPC' title='Success!' text={'100 Employés Ajoutés !'} closingModale={fermetureModale2} />)}
                     </form>
                 </div>
                 

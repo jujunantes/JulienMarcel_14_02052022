@@ -64,15 +64,6 @@ function filtre(item, searchTerm) {
     else {return false}
 }
 
-
-function monSubHeader() {
-    return (
-        <div>
-            Test subHeader
-        </div>
-    )
-}
-
 function TableEmployes() {
     const [searchTerm, setSearchTerm] = useState("")
     const data = useSelector((state) => state.user)

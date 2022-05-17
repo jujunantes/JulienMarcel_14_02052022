@@ -14,7 +14,7 @@ function ListeEmployes() {
                   </div>
               </Link>
               <div className="row text-center marge-titre">
-                  <h3>Current Employees</h3>
+                  <h2>Current Employees</h2>
               </div>
               <div className="tableau" >
                 <TableEmployes />
