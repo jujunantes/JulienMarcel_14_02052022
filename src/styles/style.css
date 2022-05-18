@@ -276,12 +276,12 @@ label {
 	width: 8rem;
 	height: 8rem;
 	margin-top: -1.8rem;
-	/*animation-name: rotate;
+	animation-name: rotate;
 	animation-duration: 8s;
 	animation-iteration-count: infinite;
-	animation-timing-function: linear;*/
+	animation-timing-function: linear;
 }
-/*
+
 .logo:after {
 	transform: rotate(-57deg);
 }
@@ -295,7 +295,7 @@ label {
 		transform: rotate(360deg);
 	}
 }
-*/
+
 /* table */
 
 table {

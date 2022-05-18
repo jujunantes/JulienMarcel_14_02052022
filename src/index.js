@@ -20,7 +20,6 @@ root.render(
     <React.StrictMode>
       <div className="d-lg-flex half">
         <div className="bg order-1 order-md-2" style={{ backgroundImage: `url(${Background})`}}></div>
-        {/*<div className="bg order-1 order-md-2"></div>*/}
         <div className="contents order-2 order-md-1">
           <MyRouter/>
         </div>
