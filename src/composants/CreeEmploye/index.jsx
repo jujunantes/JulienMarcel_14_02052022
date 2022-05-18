@@ -3,7 +3,7 @@ import React, { useState } from "react"
 import { useDispatch } from "react-redux"
 import { ajouteEmploye } from "../../store/sliceUtilisateur"
 import Select from 'react-select'
-import JModal from 'jmodal2'
+import JModal from 'jmodal'
 import {states, services, prenoms, noms, rues, villes } from '../../utils/Datas'
 import EnTete from "../../composants/EnTete"
 

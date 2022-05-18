@@ -7,7 +7,7 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^13.5.0",
-    "jmodal2": "^1.0.5",
+    "jmodal": "^1.0.14",
     "react": "^18.1.0",
     "react-data-table-component": "^7.5.1",
     "react-dom": "^18.1.0",
@@ -22,7 +22,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "postbuild": "purgecss --css build/static/css/*.css --content build/index.html build/static/js/*.js --output build/static/css"
   },
   "eslintConfig": {
     "extends": [

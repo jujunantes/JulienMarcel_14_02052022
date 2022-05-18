@@ -5818,10 +5818,10 @@
     "import-local" "^3.0.2"
     "jest-cli" "^27.5.1"
 
-"jmodal2@^1.0.5":
-  "integrity" "sha512-TWglxFHFu06lHFXw32a/5ebhz5/uBGNzY3zU1v0YiCwdaiqqrroBsXZ45D/IJbWRAFGmPNcNY1etPgATzHMxpQ=="
-  "resolved" "https://registry.npmjs.org/jmodal2/-/jmodal2-1.0.5.tgz"
-  "version" "1.0.5"
+"jmodal@^1.0.14":
+  "integrity" "sha512-euSMazGQXtZBAhGNIqtkT4TCAdpbH0RgBAI2Ev9oETbLEv3Z4wH8UI/m2G1jO1xrE734jgLKQl7XXuXwoVmo0w=="
+  "resolved" "https://registry.npmjs.org/jmodal/-/jmodal-1.0.14.tgz"
+  "version" "1.0.14"
 
 "js-tokens@^3.0.0 || ^4.0.0", "js-tokens@^4.0.0":
   "integrity" "sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ=="

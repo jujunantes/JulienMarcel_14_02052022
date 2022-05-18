@@ -11,7 +11,7 @@ import { Provider } from 'react-redux'
 //    PNG  : 3.3 MB (Lighthouse doesn't like it !)
 //    WebP : 2.2 MB
 //    Avif :   193 KB
-import Background from './medias/hr.avif' 
+import Background from './medias/hr2.avif' 
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -20,6 +20,7 @@ root.render(
     <React.StrictMode>
       <div className="d-lg-flex half">
         <div className="bg order-1 order-md-2" style={{ backgroundImage: `url(${Background})`}}></div>
+        {/*<div className="bg order-1 order-md-2"></div>*/}
         <div className="contents order-2 order-md-1">
           <MyRouter/>
         </div>
